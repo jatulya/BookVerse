@@ -1,0 +1,4 @@
+Frontend
+
+1. npx create-react-app . --template typescript
+2. npm install react-router-dom
