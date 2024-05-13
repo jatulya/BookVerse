@@ -1,3 +1,3 @@
-# Connect
+# BookVerse
 
 a social media app demo
