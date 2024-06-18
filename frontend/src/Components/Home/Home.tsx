@@ -1,8 +1,16 @@
+import React from "react"
+import Button from "../Button"
 
-function Home() {
+const loginbtn = () => {
+  alert("Login btn clicked")
+}
+
+const Home: React.FC = () => {
   return (
-    <div>
-      Hello, from home
+    <div className="home">
+      <h1>Welcome to BookVerse</h1>
+      <Button click={loginbtn} text="Login" />
+      <h2>A page to connect readers worldwide</h2>
     </div>
   )
 }

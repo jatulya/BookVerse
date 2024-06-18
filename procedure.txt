@@ -2,3 +2,6 @@ Frontend
 
 1. npx create-react-app . --template typescript
 2. npm install react-router-dom
+3. set the routes
+4. create home component
+5. create a button component with buttonprops so that it can be reused.
