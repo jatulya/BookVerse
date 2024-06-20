@@ -1,11 +1,14 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import Button from "../Button"
 
-const loginbtn = () => {
-  alert("Login btn clicked")
-}
-
 const Home: React.FC = () => {
+  const nav = useNavigate()
+  const loginbtn = () => {
+    alert("Login btn clicked")
+    nav('/profile')
+  }
+  
   return (
     <div className="home">
       <h1>Welcome to BookVerse</h1>
