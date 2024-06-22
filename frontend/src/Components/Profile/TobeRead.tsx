@@ -1,56 +1,95 @@
 import {useState} from 'react'
+import '../../globals.css'
 
 const TobeRead = () => {
     const [newBook, setNewBook] = useState<string>("");
-    const [tbrbook, settbrBook] = useState<String[]>([])
-    const [read, setRead] = useState<String[]>([])
+    const [tbrBook, setTbrBook] = useState<string[]>([])
+    const [readBook, setReadBook] = useState<string>("")
+    const [read, setRead] = useState<string[]>([])
+    const [checkedBooks, setCheckedBooks] = useState<{ [key: string]: boolean }>({});
+   
+    const addToList = (e: React.KeyboardEvent<HTMLInputElement>, type : 'tbr' | 'read') =>{
+        if (e.key === 'Enter'){
+            if (type === 'tbr'){
+                setTbrBook([newBook,...tbrBook ])
+                setCheckedBooks((prev) => ({...prev, [newBook]:false}));
+                setNewBook('')
+            }else if (type === 'read'){
+                setRead([readBook,...read])
+                setReadBook('')
+            }
+        }
+    }
+
+    const checkClick = (book: string, checked: boolean) => {
+        if (checked) {
+            setRead([...read, book]);
+        } else {
+            setRead(read.filter((b) => b !== book));
+        }
+        setCheckedBooks(prevState => ({
+            ...prevState,
+            [book]: !prevState[book]
+        }))    
+    };
 
     return (
-        <div>
+        <div className='toberead'>
+          <div>
             <h2>MY TBR LIST</h2>
             <input
                 type="text"
                 placeholder="New book"
                 value={newBook}
                 onChange={(e) => setNewBook(e.target.value)}
-                onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                    settbrBook([...tbrbook, newBook]);
-                    setNewBook("");
-                    }
-                }}
+                onKeyUp={(e) => { addToList(e,'tbr')}}
             />
-            {tbrbook.map((book, index) => {
+            {tbrBook.map((book, index) => {
                 return (
-                    <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                        <input type="checkbox" style={{ marginRight: 10 }} />
-                        <h5 style={{ margin: 0 }}>{book}</h5>
+                    <div key={index} 
+                         style={{ display: "flex"}}>
+                        <input 
+                            type="checkbox" 
+                            checked={checkedBooks[book] || false}
+                            onChange={(e) => checkClick(book, e.target.checked)}
+                        />
+                        <h5 style={{ textDecoration: checkedBooks[book] ? 'line-through' : 'none' }}>
+                        {book}
+                        </h5>
                     </div>
                 );
             })}
-            <h2>MY TBR LIST</h2>
+          </div>
+
+          <div>
+            <h2>MY READ LIST</h2>
             <input
                 type="text"
                 placeholder="New book"
-                value={newBook}
-                onChange={(e) => setNewBook(e.target.value)}
-                onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                    setRead([...read, newBook]);
-                    setNewBook("");
-                    }
-                }}
+                value={readBook}
+                onChange={(e) => setReadBook(e.target.value)}
+                onKeyUp={(e) => { addToList(e,'read')}}
             />
-            {read.map((book, index) => {
-                return (
-                    <div key={index} style={{ display: "flex", alignItems: "center" }}>
-                        <input type="checkbox" style={{ marginRight: 10 }} />
-                        <h5 style={{ margin: 0 }}>{book}</h5>
-                    </div>
-                );
-            })}     
+            <ul>
+                {read.map((book, index) => {
+                    return (
+                        <li key={index}>
+                            <h5>{book}</h5>
+                        </li>
+                    );
+                })} 
+            </ul> 
+          </div>
         </div>
   )
 }
 
 export default TobeRead
+
+
+/*
+    trim() : removes white spaces, newline etc => prevents from adding empty string to the list ( in case user press enter without typing a name)
+ 
+ */
+
+    
