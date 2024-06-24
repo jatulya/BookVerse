@@ -5,8 +5,7 @@ import Button from "../Button"
 const Home: React.FC = () => {
   const nav = useNavigate()
   const loginbtn = () => {
-    alert("Login btn clicked")
-    nav('/profile')
+    nav('/feed')
   }
   
   return (

@@ -44,17 +44,17 @@ const TobeRead = () => {
                 onChange={(e) => setNewBook(e.target.value)}
                 onKeyUp={(e) => { addToList(e,'tbr')}}
             />
+
             {tbrBook.map((book, index) => {
                 return (
-                    <div key={index} 
-                         style={{ display: "flex"}}>
+                    <div key={index} style={{ display: "flex"}}>
                         <input 
                             type="checkbox" 
                             checked={checkedBooks[book] || false}
                             onChange={(e) => checkClick(book, e.target.checked)}
                         />
                         <h5 style={{ textDecoration: checkedBooks[book] ? 'line-through' : 'none' }}>
-                        {book}
+                            {book}
                         </h5>
                     </div>
                 );
@@ -88,7 +88,8 @@ export default TobeRead
 
 
 /*
-    trim() : removes white spaces, newline etc => prevents from adding empty string to the list ( in case user press enter without typing a name)
+    trim() : removes white spaces, newline etc => prevents from adding empty string to the list 
+            (in case user press enter without typing a name)
  
  */
 
