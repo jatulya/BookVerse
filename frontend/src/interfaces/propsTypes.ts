@@ -3,3 +3,6 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: 'primary' | 'secondary',
 }
 
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> &{
+    children: React.ReactNode,
+}

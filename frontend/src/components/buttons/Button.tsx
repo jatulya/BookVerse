@@ -4,7 +4,7 @@ import './button.css'
 function Button({children, variant}: ButtonProps) {
   return (
     <div>
-      <button className={`button-${variant}` }>
+      <button type='button' className={`button-${variant}` }>
         {children}
       </button>
     </div>
