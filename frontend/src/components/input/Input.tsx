@@ -10,8 +10,9 @@ function Input(props : InputProps) {
         placeholder={props.placeholder}
         value={props.value} 
         />
+      <p className='text-red-600'>{props.error}</p>
     </div>
-  )
+  ) 
 }
 
 export default Input

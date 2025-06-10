@@ -5,4 +5,5 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> &{
     children: React.ReactNode,
+    error : string
 }
