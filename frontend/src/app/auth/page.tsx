@@ -1,3 +1,5 @@
+"use client"
+
 import Form from '@/components/forms/Form'
 import React from 'react'
 
