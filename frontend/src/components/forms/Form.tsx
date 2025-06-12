@@ -3,10 +3,13 @@ import Input from '../input/Input'
 import Button from '../buttons/Button'
 import { useForm } from 'react-hook-form'
 import {z} from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod"
 import { LoginValidation } from '@/lib/validations'
 
 function Form() {
-  const form = useForm<z.infer<typeof LoginValidation>>({});
+  const form = useForm<z.infer<typeof LoginValidation>>({
+    resolver : zodResolver
+  });
 
   return (
     <div>
